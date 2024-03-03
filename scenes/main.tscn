@@ -24,4 +24,5 @@ texture = ExtResource("1_r0nmo")
 position = Vector2(-1, -364)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("4_474lu")
-gravity = 100
+gravity = 500
+jump_power = 350
