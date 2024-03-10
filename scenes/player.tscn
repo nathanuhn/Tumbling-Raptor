@@ -1,10 +1,11 @@
-[gd_scene load_steps=48 format=3 uid="uid://b4wma7514kdnd"]
+[gd_scene load_steps=49 format=3 uid="uid://b4wma7514kdnd"]
 
 [ext_resource type="Texture2D" uid="uid://cgbgbh7dcfgca" path="res://assets/sprites/Player/player_death.png" id="1_ksjua"]
 [ext_resource type="Texture2D" uid="uid://c0qjumg8nyqmg" path="res://assets/sprites/Player/player_double_jump.png" id="2_ilpq4"]
 [ext_resource type="Texture2D" uid="uid://0w6wwmf748ys" path="res://assets/sprites/Player/player_jump.png" id="3_xk661"]
 [ext_resource type="Texture2D" uid="uid://2qfn5yyfnwt2" path="res://assets/sprites/Player/player_run.png" id="4_hww4e"]
 [ext_resource type="Texture2D" uid="uid://b3n22qqbmmval" path="res://assets/sprites/Player/player_run_shoot.png" id="5_6mmer"]
+[ext_resource type="AudioStream" uid="uid://cbi8x4qj1qu6p" path="res://assets/sounds/jump.wav" id="6_g82aq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eifvf"]
 atlas = ExtResource("1_ksjua")
@@ -198,7 +199,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 20.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -224,7 +225,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"double jump",
-"speed": 20.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -253,7 +254,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 20.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -282,7 +283,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 20.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -311,7 +312,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"shoot",
-"speed": 20.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gq7ac"]
@@ -322,8 +323,11 @@ collision_layer = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1msij")
-animation = &"run"
+animation = &"jump"
 autoplay = "run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gq7ac")
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_g82aq")
