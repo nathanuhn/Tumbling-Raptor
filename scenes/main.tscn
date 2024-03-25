@@ -25,7 +25,7 @@ texture = ExtResource("1_r0nmo")
 [node name="Platform" parent="Enviornment/Moving" instance=ExtResource("2_ixxmg")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_j2ena")]
-position = Vector2(0, -214)
+position = Vector2(2, -202)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("4_474lu")
 gravity = 500
