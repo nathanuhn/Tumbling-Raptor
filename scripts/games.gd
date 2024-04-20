@@ -4,11 +4,15 @@ extends Node2D
 
 @export var moving_environment: Node2D
 
+@onready var collect_sound = $Sounds/CollectSound
+
 var platform = preload("res://scenes/platform.tscn")
 
 var rng = RandomNumberGenerator.new()
 var last_platform_position = Vector2.ZERO
 var next_spawn_time = 0
+var score = 0
+var collectible_pitch = 1.0
 
 func _ready():
 	rng.randomize()
@@ -39,3 +43,10 @@ func _physics_process(delta):
 	
 	moving_environment.position.x -= world_speed * delta
 	
+
+func add_score(value):
+	score += value
+	collect_sound.set_pitch_scale(collectible_pitch)
+	collect_sound.play()
+	collectible_pitch += 0.1
+	print(score)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://h75ilkh4ymnv"]
+[gd_scene load_steps=8 format=3 uid="uid://h75ilkh4ymnv"]
 
 [ext_resource type="Script" path="res://scripts/games.gd" id="1_avk18"]
 [ext_resource type="Texture2D" uid="uid://bw3wndsrsivaq" path="res://assets/sprites/Background/background_static.png" id="1_r0nmo"]
@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://b4wma7514kdnd" path="res://scenes/player.tscn" id="3_j2ena"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="4_474lu"]
 [ext_resource type="PackedScene" uid="uid://bhap6c1rglncl" path="res://scenes/collectible.tscn" id="6_03ui2"]
+[ext_resource type="AudioStream" uid="uid://dal3i8dnhobtq" path="res://assets/sounds/collect.wav" id="7_knj21"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("moving_environment") groups=["example"]]
 script = ExtResource("1_avk18")
-world_speed = 100
+world_speed = 200
 moving_environment = NodePath("Enviornment/Moving")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -25,6 +26,22 @@ texture = ExtResource("1_r0nmo")
 
 [node name="Platform" parent="Enviornment/Moving" instance=ExtResource("2_ixxmg")]
 
+[node name="Collectible" parent="Enviornment/Moving" node_paths=PackedStringArray("game") instance=ExtResource("6_03ui2")]
+position = Vector2(242, -131)
+game = NodePath("../../..")
+
+[node name="Collectible2" parent="Enviornment/Moving" node_paths=PackedStringArray("game") instance=ExtResource("6_03ui2")]
+position = Vector2(816, -107)
+game = NodePath("../../..")
+
+[node name="Collectible3" parent="Enviornment/Moving" node_paths=PackedStringArray("game") instance=ExtResource("6_03ui2")]
+position = Vector2(424, -122)
+game = NodePath("../../..")
+
+[node name="Collectible4" parent="Enviornment/Moving" node_paths=PackedStringArray("game") instance=ExtResource("6_03ui2")]
+position = Vector2(626, -116)
+game = NodePath("../../..")
+
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_j2ena")]
 position = Vector2(2, -202)
 scale = Vector2(0.6, 0.6)
@@ -33,4 +50,9 @@ gravity = 500
 jump_power = 350
 camera = NodePath("../Camera2D")
 
-[node name="Collectible" parent="." instance=ExtResource("6_03ui2")]
+[node name="Sounds" type="Node2D" parent="."]
+position = Vector2(2, -202)
+scale = Vector2(0.6, 0.6)
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("7_knj21")
