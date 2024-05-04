@@ -8,8 +8,11 @@ extends Node2D
 
 @onready var collect_sound = $Sounds/CollectSound
 
+@onready var score_label = $HUD/UI/Score
+
 
 var platform = preload("res://scenes/platform.tscn")
+var platform_collectible_single = preload("res://scenes/platform_collectible_single.tscn")
 
 var rng = RandomNumberGenerator.new()
 var last_platform_position = Vector2.ZERO
@@ -26,9 +29,15 @@ func _process(delta):
 		collectible_pitch = 1.0
 	if Time.get_ticks_msec() > next_spawn_time:
 		_spawn_next_platform()
+	score_label.text = "Score: %s" % score
 
 func _spawn_next_platform():
-	var new_platform = platform.instantiate()
+	var available_platforms = [
+		platform,
+		platform_collectible_single,
+	]
+	var random_platform = available_platforms.pick_random()
+	var new_platform = random_platform.instantiate()
 		
 	if last_platform_position == Vector2.ZERO:
 		
