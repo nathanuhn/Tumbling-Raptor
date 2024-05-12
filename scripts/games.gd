@@ -13,7 +13,8 @@ extends Node2D
 
 var platform = preload("res://scenes/platform.tscn")
 var platform_collectible_single = preload("res://scenes/platform_collectible_single.tscn")
-
+var platform_collectible_row = preload("res://scenes/platform_collectible_row.tscn")
+var platform_collectible_rainbow = preload("res://scenes/platform_collectible_rainbow.tscn")
 var rng = RandomNumberGenerator.new()
 var last_platform_position = Vector2.ZERO
 var next_spawn_time = 0
@@ -35,6 +36,8 @@ func _spawn_next_platform():
 	var available_platforms = [
 		platform,
 		platform_collectible_single,
+		platform_collectible_row,
+		platform_collectible_rainbow,
 	]
 	var random_platform = available_platforms.pick_random()
 	var new_platform = random_platform.instantiate()
